@@ -129,12 +129,15 @@ def build_stage_cfg(base_cfg, stage: int):
 
     # Stage mapping (your exact order)
     if stage == 1:
-        # single UAV navigation, unlimited energy
+    # single UAV navigation (but still using the swarm env)
         cfg.n_agents = 1
         cfg.n_obstacles = 0
         cfg.dynamic_obstacles = False
-        cfg.n_tasks = 0
+
+        # IMPORTANT: use 1 task as the "goal" so we have a success criterion
+        cfg.n_tasks = 1
         cfg.dynamic_task_arrival = False
+
         cfg.energy_enabled = False
         cfg.comm_enabled = False
         cfg.wind_enabled = False
